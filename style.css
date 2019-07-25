@@ -60,6 +60,7 @@ b {
 
 ul {
     line-height: 21px;
+    min-height:50px;
 }
 
 ul li::before {
