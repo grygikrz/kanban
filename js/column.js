@@ -20,10 +20,15 @@ function Column(id, name, color) {
       if (event.target.classList.contains('add-card')) {
         var cardName = prompt("Enter the name of the card");
         event.preventDefault();
+        
+        if (cardName === null)return;
+        if (cardName == '')return alert("No text was provided");
 
         var data = new FormData();
         data.append('name', cardName);
         data.append('bootcamp_kanban_column_id', self.id);
+
+
 
         fetch(prefix + baseUrl + '/card', {
             method: 'POST',
@@ -31,14 +36,14 @@ function Column(id, name, color) {
             body: data,
           })
           .then(function(res) {
-            return res.json();
+                return res.json();
           })
           .then(function(resp) {
             var card = new Card(resp.id, cardName);
             self.addCard(card);
           });
 
-        self.addCard(new Card(cardName));
+        //self.addCard(new Card(cardName));
       }
 	});
 }
