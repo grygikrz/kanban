@@ -22,11 +22,9 @@ document.querySelector('#board .create-column').addEventListener('click', functi
       body: data,
     })
     .then(function(resp) {
-        if (name == '')return;
         return resp.json();
     })
     .then(function(resp) {
-        if (name == '')return;
       var column = new Column(resp.id, name);
       board.addColumn(column);
     });
