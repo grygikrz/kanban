@@ -11,6 +11,7 @@ document.querySelector('#board .create-column').addEventListener('click', functi
   var name = prompt('Enter a column name');
   
     if (name === null)return;
+    if (name == '')return alert("No text was provided");
   
   var data = new FormData();
 
