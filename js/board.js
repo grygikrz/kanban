@@ -9,6 +9,9 @@ var board = {
 
 document.querySelector('#board .create-column').addEventListener('click', function() {
   var name = prompt('Enter a column name');
+  
+    if (name === null)return;
+  
   var data = new FormData();
 
   data.append('name', name);
@@ -19,9 +22,11 @@ document.querySelector('#board .create-column').addEventListener('click', functi
       body: data,
     })
     .then(function(resp) {
-      return resp.json();
+        if (name == '')return;
+        return resp.json();
     })
     .then(function(resp) {
+        if (name == '')return;
       var column = new Column(resp.id, name);
       board.addColumn(column);
     });
