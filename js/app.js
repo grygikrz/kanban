@@ -1,5 +1,5 @@
-var baseUrl = 'https://kodilla.com/pl/bootcamp-api';
 var prefix = 'https://cors-anywhere.herokuapp.com/';
+var baseUrl = 'https://kodilla.com/pl/bootcamp-api';
 var myHeaders = {
   'X-Client-Id': '4173',
   'X-Auth-Token': '8e85bde55d7d7f14d26b3b3b60165b4a'
@@ -33,4 +33,24 @@ function generateTemplate(name, data, basicElement) {
   	element.innerHTML = Mustache.render(template, data);
 
   	return element;
+}
+
+
+
+function edit_Click(id, name){
+    var datas = new FormData();
+    datas = {'name': name};
+
+    fetch(prefix + baseUrl + '/column/' + parseInt(id), {
+      method: 'PUT',
+      headers: myHeaders,
+      body: JSON.stringify(datas)
+    })
+    .then(function(resp) {
+        return console.log(resp.json());
+    });
+    //.then(function(resp) {
+
+    //})
+    //.catch(err => console.log(err));
 }
