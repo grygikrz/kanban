@@ -16,6 +16,27 @@ function Column(id, name, color) {
 	    if (event.target.classList.contains('btn-delete')) {
 	      	self.removeColumn();
 	    }
+	    if (event.target.classList.contains('btn-edit')) {
+	        if (!this.querySelector('input')){
+	            
+	        var newInput = document.createElement("input");
+	        this.querySelector('h2').innerHTML = event.target.parentNode.querySelector('h2').innerHTML;
+	      	this.querySelector('h2').appendChild(newInput);
+	      	newInput.value = this.querySelector('h2').innerText;
+	        var saveBtn = this.querySelector('.btn-edit');
+	        saveBtn.innerText = "save";
+	        saveBtn.className = "btn-save";
+	        saveBtn.addEventListener('click', (event) => {
+	            edit_Click(self.id, this.querySelector('input').value);
+	            this.querySelector('h2').innerText = this.querySelector('input').value;
+	            var editBtn = this.querySelector('.btn-save');
+	            editBtn.innerHTML = "edit";
+	            editBtn.className = "btn-edit";
+	        });
+	        }else{
+	            this.querySelector('h2').removeChild(this.parentNode.querySelector('input'));
+	        }
+	    }
 
       if (event.target.classList.contains('add-card')) {
         var cardName = prompt("Enter the name of the card");
